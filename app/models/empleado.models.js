@@ -1,6 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
     const Empleado = sequelize.define('empleado', {
         idEmpleado: {
+            autoIncrement: true,
             type: Sequelize.NUMERIC,
             primaryKey: true
         },
