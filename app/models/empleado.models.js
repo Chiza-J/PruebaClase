@@ -2,7 +2,7 @@ module.exports = (sequelize, Sequelize) => {
     const Empleado = sequelize.define('empleado', {
         idEmpleado: {
             autoIncrement: true,
-            type: Sequelize.NUMERIC,
+            type: Sequelize.INTEGER,
             primaryKey: true
         },
         primerNombre: {

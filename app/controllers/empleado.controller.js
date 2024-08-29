@@ -6,7 +6,7 @@ exports.create = (req, res) => {
     let empleado = {};
 
     try {
-        empleado.idEmpleado = req.body.idEmpleado;
+        
         empleado.primerNombre = req.body.primerNombre;
         empleado.segundoNombre = req.body.segundoNombre;
         empleado.primerApellido = req.body.primerApellido;
