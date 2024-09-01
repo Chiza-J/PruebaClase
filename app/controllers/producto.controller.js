@@ -6,10 +6,10 @@ exports.create = (req, res) => {
     let producto = {};
 
     try {
-        producto.nombreProducto = req.body.nombreProducto;
         producto.descripcion = req.body.descripcion;
-        producto.precio = req.body.precio;
-        producto.cantidad = req.body.cantidad;
+        producto.stock = req.body.stock; 
+        producto.stockMinimo = req.body.stockMinimo; 
+        producto.precioUnitario = req.body.precioUnitario; 
         producto.idProveedor = req.body.idProveedor;
 
         Producto.create(producto).then(result => {
@@ -26,15 +26,16 @@ exports.create = (req, res) => {
     }
 };
 
+
 // Actualizar producto por ID
 exports.updateById = async (req, res) => {
     try {
-        let productoId = req.params.id;
-        let producto = await Producto.findByPk(productoId);
+        let idProducto = req.params.idProducto;
+        let producto = await Producto.findByPk(idProducto);
 
         if (!producto) {
             res.status(404).json({
-                message: "No se encontró el producto con id = " + productoId,
+                message: "No se encontró el producto con id = " + idProducto,
                 producto: "",
                 error: "404"
             });
@@ -46,23 +47,23 @@ exports.updateById = async (req, res) => {
                 cantidad: req.body.cantidad,
                 idProveedor: req.body.idProveedor
             };
-            let result = await Producto.update(updatedObject, { returning: true, where: { idProducto: productoId } });
+            let result = await Producto.update(updatedObject, { returning: true, where: { idProducto: idProducto } });
 
             if (!result) {
                 res.status(500).json({
-                    message: "Error al actualizar el producto con id = " + req.params.id,
+                    message: "Error al actualizar el producto con id = " + req.params.idProducto,
                     error: "No se pudo actualizar",
                 });
             }
 
             res.status(200).json({
-                message: "Producto actualizado exitosamente con id = " + productoId,
+                message: "Producto actualizado exitosamente con id = " + idProducto,
                 producto: updatedObject,
             });
         }
     } catch (error) {
         res.status(500).json({
-            message: "Error al actualizar el producto con id = " + req.params.id,
+            message: "Error al actualizar el producto con id = " + req.params.idProducto,
             error: error.message
         });
     }
@@ -71,24 +72,24 @@ exports.updateById = async (req, res) => {
 // Eliminar producto por ID
 exports.deleteById = async (req, res) => {
     try {
-        let productoId = req.params.id;
-        let producto = await Producto.findByPk(productoId);
+        let idProducto = req.params.idProducto;
+        let producto = await Producto.findByPk(idProducto);
 
         if (!producto) {
             res.status(404).json({
-                message: "No existe un producto con id = " + productoId,
+                message: "No existe un producto con id = " + idProducto,
                 error: "404",
             });
         } else {
             await producto.destroy();
             res.status(200).json({
-                message: "Producto eliminado exitosamente con id = " + productoId,
+                message: "Producto eliminado exitosamente con id = " + idProducto,
                 producto: producto,
             });
         }
     } catch (error) {
         res.status(500).json({
-            message: "Error al eliminar el producto con id = " + req.params.id,
+            message: "Error al eliminar el producto con id = " + req.params.idProducto,
             error: error.message,
         });
     }
@@ -119,23 +120,23 @@ exports.retrieveAllProductos = (req, res) => {
 // Recuperar producto por ID
 exports.getProductoById = async (req, res) => {
     try {
-        let productoId = req.params.id;
-        let producto = await Producto.findByPk(productoId);
+        let idProducto = req.params.idProducto;
+        let producto = await Producto.findByPk(idProducto);
 
         if (!producto) {
             res.status(404).json({
-                message: "No se encontró un producto con id = " + productoId,
+                message: "No se encontró un producto con id = " + idProducto,
                 error: "404"
             });
         } else {
             res.status(200).json({
-                message: "Producto recuperado exitosamente con id = " + productoId,
+                message: "Producto recuperado exitosamente con id = " + idProducto,
                 producto: producto
             });
         }
     } catch (error) {
         res.status(500).json({
-            message: "Error al recuperar el producto con id = " + req.params.id,
+            message: "Error al recuperar el producto con id = " + req.params.idProducto,
             error: error.message
         });
     }
