@@ -5,6 +5,7 @@ const departamentos = require('../controllers/departamento.controller.js');
 const empleados = require('../controllers/empleado.controller.js');
 const clientes = require('../controllers/cliente.controller.js');
 const proveedores = require('../controllers/proveedor.controller.js');
+const productos = require('../controllers/producto.controller.js');
 
 // Departamento routes
 router.post('/api/departamentos/create', departamentos.create);
@@ -34,5 +35,12 @@ router.get('/api/proveedores/all', proveedores.retrieveAllProveedores);
 router.get('/api/proveedores/onebyid/:id', proveedores.getProveedorById);
 router.put('/api/proveedores/update/:id', proveedores.updateById);
 router.delete('/api/proveedores/delete/:id', proveedores.deleteById);
+
+// Producto routes
+router.post('/api/productos/create', productos.create);
+router.get('/api/productos/all', productos.retrieveAllProductos);
+router.get('/api/productos/onebyid/:id', productos.getProductoById);
+router.put('/api/productos/update/:id', productos.updateById);
+router.delete('/api/productos/delete/:id', productos.deleteById);
 
 module.exports = router;
