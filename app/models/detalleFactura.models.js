@@ -1,13 +1,20 @@
 module.exports = (sequelize, Sequelize) => {
     const FacturaDetalle = sequelize.define('facturaDetalle', {
-        idFactura: {
+        idDetalle: {
             autoIncrement: true,
             type: Sequelize.INTEGER,
             primaryKey: true
         },
-        idLinea: {
-            type: Sequelize.NUMERIC,
+
+        idFactura: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
             primaryKey: true
+        },
+        idLinea: {
+            type: Sequelize.INTEGER,
+            primaryKey: true,
+            allowNull: false
         },
         idProducto: {
             type: Sequelize.INTEGER,

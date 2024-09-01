@@ -98,7 +98,7 @@ exports.deleteById = async (req, res) => {
 exports.retrieveAllProductos = (req, res) => {
     Producto.findAll({
         order: [
-            ['nombreProducto', 'ASC']
+            ['idProducto', 'ASC']
         ]
     })
     .then(productoInfos => {

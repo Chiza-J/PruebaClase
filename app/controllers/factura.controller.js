@@ -96,7 +96,7 @@ exports.deleteById = async (req, res) => {
 exports.retrieveAllFacturas = (req, res) => {
     Factura.findAll({
         order: [
-            ['numeroFactura', 'ASC']
+            ['noFact', 'ASC']
         ]
     })
     .then(facturaInfos => {
