@@ -19,7 +19,7 @@ module.exports = (sequelize, Sequelize) => {
         idProveedor: {
             type: Sequelize.NUMERIC,
             references: {
-                model: 'proveedores', // Nombre de la tabla a la que hace referencia
+                model: 'proveedors', // Nombre de la tabla a la que hace referencia
                 key: 'idProveedor'
             }
         }

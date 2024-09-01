@@ -11,14 +11,14 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING(20)
         },
         idCliente: {
-            type: Sequelize.NUMERIC,
+            type: Sequelize.INTEGER,
             references: {
                 model: 'clientes',
                 key: 'idCliente'
             }
         },
         idEmpleado: {
-            type: Sequelize.NUMERIC,
+            type: Sequelize.INTEGER,
             references: {
                 model: 'empleados',
                 key: 'idEmpleado'
