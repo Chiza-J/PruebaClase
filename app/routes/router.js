@@ -7,6 +7,7 @@ const clientes = require('../controllers/cliente.controller.js');
 const proveedores = require('../controllers/proveedor.controller.js');
 const productos = require('../controllers/producto.controller.js');
 const facturas = require('../controllers/factura.controller.js');
+const facturaDetalles = require('../controllers/detalleFactura.controller.js');
 
 // Departamento routes
 router.post('/api/departamentos/create', departamentos.create);
@@ -44,12 +45,19 @@ router.get('/api/productos/onebyid/:id', productos.getProductoById);
 router.put('/api/productos/update/:id', productos.updateById);
 router.delete('/api/productos/delete/:id', productos.deleteById);
 
-
 // Factura routes
 router.post('/api/facturas/create', facturas.create);
 router.get('/api/facturas/all', facturas.retrieveAllFacturas);
 router.get('/api/facturas/onebyid/:id', facturas.getFacturaById);
 router.put('/api/facturas/update/:id', facturas.updateById);
 router.delete('/api/facturas/delete/:id', facturas.deleteById);
+
+// FacturaDetalle routes
+router.post('/api/facturadetalles/create', facturaDetalles.create);
+router.get('/api/facturadetalles/all', facturaDetalles.retrieveAllFacturaDetalles);
+router.get('/api/facturadetalles/onebyid/:id', facturaDetalles.getFacturaDetalleById);
+router.put('/api/facturadetalles/update/:id', facturaDetalles.updateById);
+router.delete('/api/facturadetalles/delete/:id', facturaDetalles.deleteById);
+
 
 module.exports = router;
