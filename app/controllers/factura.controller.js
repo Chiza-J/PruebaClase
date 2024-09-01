@@ -6,10 +6,11 @@ exports.create = (req, res) => {
     let factura = {};
 
     try {
-        factura.numeroFactura = req.body.numeroFactura;
-        factura.fecha = req.body.fecha;
+        factura.noFact = req.body.noFact;
+        factura.serie = req.body.serie;
         factura.idCliente = req.body.idCliente;
-        factura.total = req.body.total;
+        factura.idEmpleado = req.body.idEmpleado;
+        factura.fechaFac = req.body.fechaFac;
 
         Factura.create(factura).then(result => {
             res.status(200).json({
@@ -39,16 +40,17 @@ exports.updateById = async (req, res) => {
             });
         } else {
             let updatedObject = {
-                numeroFactura: req.body.numeroFactura,
-                fecha: req.body.fecha,
+                noFact: req.body.noFact,
+                serie: req.body.serie,
                 idCliente: req.body.idCliente,
-                total: req.body.total
+                idEmpleado: req.body.idEmpleado,
+                fechaFac: req.body.fechaFac
             };
             let result = await Factura.update(updatedObject, { returning: true, where: { idFactura: facturaId } });
 
-            if (!result) {
+            if (!result[0]) {
                 res.status(500).json({
-                    message: "Error al actualizar la factura con id = " + req.params.id,
+                    message: "Error al actualizar la factura con id = " + facturaId,
                     error: "No se pudo actualizar",
                 });
             }
