@@ -26,11 +26,21 @@ module.exports = (sequelize, Sequelize) => {
         estatus: {
             type: Sequelize.NUMERIC
         },
-        idDepartamento: {
-            type: Sequelize.NUMERIC,
-            
+        idDepartamento: {  // Aquí se define el campo de clave foránea
+            type: Sequelize.INTEGER,
+            references: {
+                model: 'departamentos', // Nombre de la tabla a la que hace referencia
+                key: 'idDepartamento'
+            }
         }
     });
+
+    Empleado.associate = models => {
+        Empleado.belongsTo(models.Departamento, { 
+            foreignKey: 'idDepartamento',  // Asegura que la clave foránea esté definida
+            as: 'departamento'  // Alias opcional para la relación
+        });
+    }
 
     return Empleado;
 }

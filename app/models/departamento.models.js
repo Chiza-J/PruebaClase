@@ -10,5 +10,12 @@ module.exports = (sequelize, Sequelize) => {
         }
     });
 
+    Departamento.associate = models => {
+        Departamento.hasMany(models.Empleado, { 
+            foreignKey: 'idDepartamento',  // Define la clave foránea aquí también
+            as: 'empleados'  // Alias opcional para la relación
+        });
+    }
+
     return Departamento;
 }
