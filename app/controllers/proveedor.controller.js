@@ -30,16 +30,16 @@ exports.create = (req, res) => {
         });
     }
 };
-
+ 
 // Actualizar proveedor por ID
 exports.updateById = async (req, res) => {
     try {
-        let proveedorId = req.params.id;
-        let proveedor = await Proveedor.findByPk(proveedorId);
+        let idProveedor = req.params.idProveedor;
+        let proveedor = await Proveedor.findByPk(idProveedor);
 
         if (!proveedor) {
             res.status(404).json({
-                message: "No se encontró el proveedor con id = " + proveedorId,
+                message: "No se encontró el proveedor con id = " + idProveedor,
                 proveedor: "",
                 error: "404"
             });
@@ -56,23 +56,23 @@ exports.updateById = async (req, res) => {
                 telefonoContacto: req.body.telefonoContacto,
                 estatus: req.body.estatus
             };
-            let result = await Proveedor.update(updatedObject, { returning: true, where: { idProveedor: proveedorId } });
+            let result = await Proveedor.update(updatedObject, { returning: true, where: { idProveedor: idProveedor } });
 
             if (!result) {
                 res.status(500).json({
-                    message: "Error al actualizar el proveedor con id = " + req.params.id,
+                    message: "Error al actualizar el proveedor con id = " + req.params.idProveedor,
                     error: "No se pudo actualizar",
                 });
             }
 
             res.status(200).json({
-                message: "Proveedor actualizado exitosamente con id = " + proveedorId,
+                message: "Proveedor actualizado exitosamente con id = " + idProveedor,
                 proveedor: updatedObject,
             });
         }
     } catch (error) {
         res.status(500).json({
-            message: "Error al actualizar el proveedor con id = " + req.params.id,
+            message: "Error al actualizar el proveedor con id = " + req.params.idProveedor,
             error: error.message
         });
     }
@@ -81,24 +81,24 @@ exports.updateById = async (req, res) => {
 // Eliminar proveedor por ID
 exports.deleteById = async (req, res) => {
     try {
-        let proveedorId = req.params.id;
-        let proveedor = await Proveedor.findByPk(proveedorId);
+        let idProveedor = req.params.idProveedor;
+        let proveedor = await Proveedor.findByPk(idProveedor);
 
         if (!proveedor) {
             res.status(404).json({
-                message: "No existe un proveedor con id = " + proveedorId,
+                message: "No existe un proveedor con id = " + idProveedor,
                 error: "404",
             });
         } else {
             await proveedor.destroy();
             res.status(200).json({
-                message: "Proveedor eliminado exitosamente con id = " + proveedorId,
+                message: "Proveedor eliminado exitosamente con id = " + idProveedor,
                 proveedor: proveedor,
             });
         }
     } catch (error) {
         res.status(500).json({
-            message: "Error al eliminar el proveedor con id = " + req.params.id,
+            message: "Error al eliminar el proveedor con id = " + req.params.idProveedor,
             error: error.message,
         });
     }
@@ -129,23 +129,23 @@ exports.retrieveAllProveedores = (req, res) => {
 // Recuperar proveedor por ID
 exports.getProveedorById = async (req, res) => {
     try {
-        let proveedorId = req.params.id;
-        let proveedor = await Proveedor.findByPk(proveedorId);
+        let idProveedor = req.params.idProveedor;
+        let proveedor = await Proveedor.findByPk(idProveedor);
 
         if (!proveedor) {
             res.status(404).json({
-                message: "No se encontró un proveedor con id = " + proveedorId,
+                message: "No se encontró un proveedor con id = " + idProveedor,
                 error: "404"
             });
         } else {
             res.status(200).json({
-                message: "Proveedor recuperado exitosamente con id = " + proveedorId,
+                message: "Proveedor recuperado exitosamente con id = " + idProveedor,
                 proveedor: proveedor
             });
         }
     } catch (error) {
         res.status(500).json({
-            message: "Error al recuperar el proveedor con id = " + req.params.id,
+            message: "Error al recuperar el proveedor con id = " + req.params.idProveedor,
             error: error.message
         });
     }
