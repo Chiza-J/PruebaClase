@@ -1,7 +1,8 @@
 module.exports = (sequelize, Sequelize) => {
     const FacturaDetalle = sequelize.define('facturaDetalle', {
         idFactura: {
-            type: Sequelize.NUMERIC,
+            autoIncrement: true,
+            type: Sequelize.INTEGER,
             primaryKey: true
         },
         idLinea: {
@@ -9,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true
         },
         idProducto: {
-            type: Sequelize.NUMERIC,
+            type: Sequelize.INTEGER,
             references: {
                 model: 'productos',
                 key: 'idProducto'

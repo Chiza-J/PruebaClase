@@ -1,7 +1,8 @@
 module.exports = (sequelize, Sequelize) => {
     const Producto = sequelize.define('producto', {
         idProducto: {
-            type: Sequelize.NUMERIC,
+            autoIncrement: true,
+            type: Sequelize.INTEGER,
             primaryKey: true
         },
         descripcion: {
@@ -17,7 +18,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.FLOAT
         },
         idProveedor: {
-            type: Sequelize.NUMERIC,
+            type: Sequelize.INTEGER,
             references: {
                 model: 'proveedors', // Nombre de la tabla a la que hace referencia
                 key: 'idProveedor'

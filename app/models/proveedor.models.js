@@ -1,7 +1,8 @@
 module.exports = (sequelize, Sequelize) => {
     const Proveedor = sequelize.define('proveedor', {
         idProveedor: {
-            type: Sequelize.NUMERIC,
+            autoIncrement: true,
+            type: Sequelize.INTEGER,
             primaryKey: true
         },
         empresa: {

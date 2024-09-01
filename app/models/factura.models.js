@@ -1,7 +1,8 @@
 module.exports = (sequelize, Sequelize) => {
     const Factura = sequelize.define('factura', {
         idFactura: {
-            type: Sequelize.NUMERIC,
+            autoIncrement: true,
+            type: Sequelize.INTEGER,
             primaryKey: true
         },
         noFact: {
